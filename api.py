@@ -12,9 +12,12 @@ def hello():
     
 @app.route('/r/<int:id>/', methods=['GET'])
 def predict(id):
-    print("test")
-    obj = recommendedBooks(id)
-    return jsonify(obj)
+    distances, indices = model.kneighbors(us_canada_user_rating_pivot.iloc[id,:].values.reshape(1, -1), n_neighbors = 6)
+    recommendedlist = []
+    for i in range(0, len(distances.flatten())):
+        if i != 0:
+            recommendedlist.append(us_canada_user_rating_pivot.index[indices.flatten()[i]])
+    return jsonify(recommendedlist)
 
 @app.route('/pred/<int:id>/', methods=['GET'])
 def testpredict(id):
