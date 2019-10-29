@@ -16,6 +16,12 @@ def predict(id):
     obj = recommendedBooks(model,id)
     return jsonify(obj)
 
+@app.route('/pred/<int:id>/', methods=['GET'])
+def testpredict(id):
+    x = str(id) + " test"
+    return jsonify(x)
+
+
 def recommendedBooks(model_knn, bookIndex, number=6):
         distances, indices = model_knn.kneighbors(us_canada_user_rating_pivot.iloc[bookIndex,:].values.reshape(1, -1), n_neighbors = number)
         recommendedlist = []
