@@ -4,7 +4,9 @@ import pickle
 
 app = Flask(__name__)
 
-# model = pickle.load(open('book.pkl', 'rb'))
+model = pickle.load(open('book.pkl', 'rb'))
+data = pickle.load(open('bookData.pkl', 'rb'))
+us_canada_user_rating_pivot = data.pivot(index = 'bookTitle', columns = 'userID', values = 'bookRating').fillna(0)
 
 @app.route('/', methods=['GET'])
 def hello():
@@ -35,9 +37,9 @@ def recommendedBooks(bookIndex, number=6):
 
 
 if __name__ == '__main__':
-    with open('book.pkl','rb') as f:
-        model = pickle.load(f)
-    with open('bookData.pkl','rb') as d:
-        data = pickle.load(d)
-        us_canada_user_rating_pivot = data.pivot(index = 'bookTitle', columns = 'userID', values = 'bookRating').fillna(0)
+    # with open('book.pkl','rb') as f:
+    #     model = pickle.load(f)
+    # with open('bookData.pkl','rb') as d:
+    #     data = pickle.load(d)
+    #     us_canada_user_rating_pivot = data.pivot(index = 'bookTitle', columns = 'userID', values = 'bookRating').fillna(0)
     app.run()
