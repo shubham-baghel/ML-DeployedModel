@@ -35,4 +35,4 @@ if __name__ == '__main__':
     with open('bookData.pkl','rb') as d:
         data = pickle.load(d)
         us_canada_user_rating_pivot = data.pivot(index = 'bookTitle', columns = 'userID', values = 'bookRating').fillna(0)
-    app.run(port=5001, debug=True)
+    app.run()
