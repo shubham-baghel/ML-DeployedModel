@@ -10,10 +10,7 @@ def load_models():
     global us_canada_user_rating_pivot
     with open('book.pkl','rb') as f:
         model = pickle.load(f)
-    with open('bookData.pkl','rb') as d:
-        data = pickle.load(d)
-        us_canada_user_rating_pivot = data.pivot(index = 'bookTitle', columns = 'userID', values = 'bookRating').fillna(0)
-
+        
 @app.route('/', methods=['GET'])
 def hello():
     return "Welcome to Book Recommendation App."
