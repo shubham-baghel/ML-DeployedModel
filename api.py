@@ -12,6 +12,7 @@ def hello():
     
 @app.route('/r/<int:id>/', methods=['GET'])
 def predict(id):
+    print("test")
     obj = recommendedBooks(id)
     return jsonify(obj)
 
