@@ -4,10 +4,6 @@ import pickle
 
 app = Flask(__name__)
 
-model = pickle.load(open('book.pkl', 'rb'))
-data = pickle.load(open('bookData.pkl', 'rb'))
-us_canada_user_rating_pivot = data.pivot(index = 'bookTitle', columns = 'userID', values = 'bookRating').fillna(0)
-
 @app.route('/', methods=['GET'])
 def hello():
     return "Welcome to Book Recommendation App."
