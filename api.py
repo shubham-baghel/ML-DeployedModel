@@ -12,7 +12,7 @@ def hello():
     
 @app.route('/r/<int:id>/', methods=['GET'])
 def predict(id):
-    obj = recommendedBooks(model,id)
+    obj = recommendedBooks(id)
     return jsonify(obj)
 
 @app.route('/pred/<int:id>/', methods=['GET'])
