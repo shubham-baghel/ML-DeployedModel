@@ -26,12 +26,8 @@ def recommendedBooks(model_knn, bookIndex, number=6):
         distances, indices = model_knn.kneighbors(us_canada_user_rating_pivot.iloc[bookIndex,:].values.reshape(1, -1), n_neighbors = number)
         recommendedlist = []
         for i in range(0, len(distances.flatten())):
-            if i == 0:
-                print('Recommendations for {0}:\n'.format(us_canada_user_rating_pivot.index[bookIndex]))
-            else:
-                print('{0}: {1}, with distance of {2}:'.format(i, us_canada_user_rating_pivot.index[indices.flatten()[i]], distances.flatten()[i]))
+            if i != 0:
                 recommendedlist.append(us_canada_user_rating_pivot.index[indices.flatten()[i]])
-
         return recommendedlist
 
 
