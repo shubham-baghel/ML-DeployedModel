@@ -39,6 +39,7 @@ us_canada_user_rating = combined[combined['Location'].str.contains("usa|canada")
 us_canada_user_rating=us_canada_user_rating.drop('Age', axis=1)
 
 from scipy.sparse import csr_matrix
+us_canada_user_rating = us_canada_user_rating.head(10000)
 us_canada_user_rating = us_canada_user_rating.drop_duplicates(['userID', 'bookTitle'])
 us_canada_user_rating_pivot = us_canada_user_rating.pivot(index = 'bookTitle', columns = 'userID', values = 'bookRating').fillna(0)
 us_canada_user_rating_matrix = csr_matrix(us_canada_user_rating_pivot.values)
