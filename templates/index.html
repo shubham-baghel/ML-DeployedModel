@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<style>
+    header {
+  background-color: lightblue;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: black;
+}
+
+        .grid { 
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          grid-gap: 20px;
+          align-items: stretch;
+          }
+        .grid > article {
+          border: 1px solid #ccc;
+          box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+        }
+        .grid > article img {
+          max-width: 100%;
+        }
+        .text {
+          padding: 0 20px 20px;
+        }
+        .text > button {
+          background: gray;
+          border: 0;
+          color: white;
+          padding: 10px;
+          width: 100%;
+          }
+        </style>
+
+<body>
+
+        <header>
+            <a href="/">
+                <h2>Books Recommendation</h2>
+            </a>
+              </header>
+<main class="grid">
+        {% for item in all_books %}
+        <div>
+            <a href="../r/{{item['ISBN'] }}">
+                <img src={{ item['imageUrlL'] }}  onclick=" callRecommend( {{loop.index0 }} )" alt="Sample photo">
+            </a>
+            </div>
+        {% endfor %}
+</main>
+</body>
+</html>
+
+
